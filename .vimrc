@@ -280,6 +280,7 @@ inoremap <F9> <ESC>:<C-u>setlocal imi=0<CR>a
 
 " 全体整形
 nnoremap <M-S-F> :call <SID>format_file()<CR>
+nnoremap <Space>kD :call <SID>format_file()<CR>
 
 " メモの作成
 nnoremap <Space>m :<C-u>call <SID>touch_with_desktop(0)<CR>
