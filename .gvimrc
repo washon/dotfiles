@@ -10,22 +10,28 @@ colorscheme molokai
 " フォント設定:
 "
 if has('win32')
-  " Windows用
-	set guifont=Ricty:h9:cSHIFTJIS
-	" set guifont=MS_Gothic:h9:cSHIFTJIS
-  " 行間隔の設定
-  set linespace=1
-  " 一部のUCS文字の幅を自動計測して決める
-  if has('kaoriya')
-    set ambiwidth=auto
-  endif
+    " Windows用
+    set guifont=Ricty:h9:cSHIFTJIS
+    " set guifont=MS_Gothic:h9:cSHIFTJIS
+    " 行間隔の設定
+
+    set linespace=1
+
+    " 一部のUCS文字の幅を自動計測して決める
+    if has('kaoriya')
+      set ambiwidth=auto
+    endif
+
+	
+	set columns=240
+	set lines=80
 elseif has('gui_macvim')
 	set guifont=Menlo\ Regular:h10
 	set guifontwide=Menlo\ Regular:h10
 
 	set isfname+=32
-	set lines=63
-	set columns=140
+	set lines=70
+	set columns=192
 
 elseif has('xfontset')
   " UNIX用 (xfontsetを使用)
@@ -35,10 +41,6 @@ endif
 "---------------------------------------------------------------------------
 " ウインドウに関する設定:
 "
-" ウインドウの幅
-set columns=240
-" ウインドウの高さ
-set lines=80
 
 " メニューバーの非表示
 set guioptions-=m
@@ -53,6 +55,6 @@ autocmd GUIEnter * set vb t_vb=
 gui
 
 " スケスケ
-" set transparency=200
+set transparency=10
 
 

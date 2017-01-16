@@ -3,6 +3,7 @@
 
 
 
+
 " NeoBundle がインストールされていない時、
 " もしくは、プラグインの初期化に失敗した時の処理
 function! s:WithoutBundles()
@@ -66,6 +67,12 @@ function! s:LoadBundles()
     " markdown
     NeoBundle 'kannokanno/previm'				"markdown over vim
     NeoBundle 'tyru/open-browser.vim'			"ブラウザを開く
+    NeoBundle 'rhysd/vim-gfm-syntax'			"markdown syntax
+
+
+    " evernote
+    NeoBundle 'kakkyz81/evervim'
+
 
 endfunction
 
@@ -136,6 +143,22 @@ autocmd FileType text setlocal textwidth=0
 let g:Align_xstrlen=0
 let g:DrChipTopLvlMenu = ''
 
+"---------------------------------------------------------------------------
+" open-browser.vim
+let g:netrw_nogx = 1 " disable netrw's gx mapping.
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
+
+"---------------------------------------------------------------------------
+" evervim
+
+let g:evervim_devtoken='dummy'
+
+nnoremap <Leader>l :EvervimNotebookList<CR>
+nnoremap <Leader>s :EvervimSearchByQuery<Space>
+nnoremap <Leader>c :EvervimCreateNote<CR>
+nnoremap <Leader>t :EvervimListTags<CR>
+
 
 "---------------------------------------------------------------------------
 " GUI固有ではない画面表示の設定:
@@ -145,12 +168,15 @@ set number
 " 相対行数を表示(MacType入れると描画が重くなったのでやめた
 "set relativenumber
 
+" タブをスペースに変換
+set expandtab
+
 " タブを表示するときの幅
 set tabstop=4
 " タブを挿入するときの幅
 set shiftwidth=4
-" タブをタブとして扱う(スペースに展開しない)
-set noexpandtab
+
+
 
 " カーソルの強調
 set cursorline
@@ -173,7 +199,7 @@ set noundofile
 set viminfo=
 
 " カレントディレクトリの変更(vimshellと競合する模様
-" set autochdir
+set autochdir
 
 
 " エンコーディング
@@ -303,10 +329,11 @@ nnoremap <silent> <Space>aY mmggVG"*y`m
 nnoremap <silent> <Space>aD ggdG
 
 " 箇条書きの用意
-nnoremap <silent> <Space>sN :<C-u>call <SID>put_num_list(5)<CR>
-nnoremap <silent> <Space>sA :<C-u>call <SID>put_ast_list(5)<CR>
+nnoremap <silent> <Space>kN :<C-u>call <SID>put_num_list(7)<CR>
+nnoremap <silent> <Space>kA :<C-u>call <SID>put_ast_list(7)<CR>
 
-
+nnoremap <silent> <Space>mL :<C-u>call <SID>markdown_link()<CR>
+nnoremap <silent> <Space>mC :<C-u>call <SID>markdown_codeblock()<CR>
 
 
 " Switch
@@ -337,10 +364,18 @@ endfunction
 
 " 透過度を変える
 function! s:toggle_transparence()
-	if &transparency ==255 
-		set transparency=200
+	if has('gui_macvim')
+		if &transparency ==10
+			set transparency=0
+		else
+			set transparency=10
+		endif
 	else
-		set transparency=255
+		if &transparency ==255 
+			set transparency=200
+		else
+			set transparency=255
+		endif
 	endif
 endfunction
 
@@ -352,16 +387,36 @@ function! s:re_detect_filetype()
 	if &filetype == "text" | setlocal ft=hybrid |setlocal ft=markdown | endif
 endfunction
 
+"---------------------------------------------------------------------------
+" markdown functions
+"
+
+" リンク記法を整える
+function! s:markdown_link()
+	:call append(line(".")-1, "[")
+	:call append(line("."), "](")
+	:call append(line(".")+2, ")")
+	:call cursor( line(".")-1 , col(".") )
+	:join5
+	:call cursor( line(".") , col(".") )
+endfunction
+
+" 数値付箇条書きを作成
+function! s:markdown_codeblock()
+	:call append(line(".")-1, "```")
+	:call append(line("."), "```")
+	:call cursor( line(".") , col(".") )
+endfunction
 
 " 数値付箇条書きを作成
 function! s:put_num_list( max )
 	for i in range(1, a:max)
 		let msg = i . ". "
-		:call append(line(".")+i-1, msg)
+		:call append(line(".")-1, msg)
 		unlet i
 		unlet msg
 	endfor
-	:call cursor( line(".") + 1, col(".") )
+	:call cursor( line(".")-a:max , col(".") )
 endfunction
 
 
@@ -369,11 +424,11 @@ endfunction
 function! s:put_ast_list( max )
 	for i in range(1, a:max)
 		let msg = "* "
-		:call append(line(".")+i-1, msg)
+		:call append(line(".")-1, msg)
 		unlet i
 		unlet msg
 	endfor
-	:call cursor( line(".") + 1, col(".") )
+	:call cursor( line(".")-a:max , col(".") )
 endfunction
 
 
@@ -436,6 +491,9 @@ let g:unite_source_file_mru_filename_format = ''
 
 "uniteのwindowを右に
 "let g:unite_split_rule = 'rightbelow'
+"
+
+call unite#custom#source('file', 'matchers', "matcher_default")
 
 
 "現在開いているファイルのディレクトリ下のファイル一覧。
