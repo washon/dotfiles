@@ -1,103 +1,85 @@
-"-----------------------------------------
-"NeoBundle
+"dein Scripts-----------------------------
+if &compatible
+    set nocompatible               " Be iMproved
+endif
 
+" Required:
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
+" Required:
+if dein#load_state('~/.cache/dein')
+    call dein#begin('~/.cache/dein')
 
+    " Let dein manage dein
+    " Required:
+    call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
 
-" NeoBundle がインストールされていない時、
-" もしくは、プラグインの初期化に失敗した時の処理
-function! s:WithoutBundles()
-    colorscheme desert
-    " その他の処理
-endfunction
-
-" NeoBundle よるプラグインのロードと各プラグインの初期化
-function! s:LoadBundles()
-    "colorscheme
-    NeoBundle 'tomasr/molokai'
-    NeoBundle 'altercation/vim-colors-solarized'
-    NeoBundle 'croaker/mustang-vim'
-    NeoBundle 'jeffreyiacono/vim-colors-wombat'
-    NeoBundle 'nanotech/jellybeans.vim'
-    NeoBundle 'vim-scripts/Lucius'
-    NeoBundle 'vim-scripts/Zenburn'
-    NeoBundle 'mrkn/mrkn256.vim'
-    NeoBundle 'jpo/vim-railscasts-theme'
-    NeoBundle 'therubymug/vim-pyte'
-
+    call dein#add('tomasr/molokai')
+    call dein#add('altercation/vim-colors-solarized')
+    call dein#add('croaker/mustang-vim')
+    call dein#add('jeffreyiacono/vim-colors-wombat')
+    call dein#add('nanotech/jellybeans.vim')
+    call dein#add('vim-scripts/Lucius')
+    call dein#add('vim-scripts/Zenburn')
+    call dein#add('mrkn/mrkn256.vim')
+    call dein#add('jpo/vim-railscasts-theme')
+    call dein#add('therubymug/vim-pyte')
 
     " 総合的
-    NeoBundle 'Shougo/neobundle.vim'
-    NeoBundle 'Shougo/neocomplete'				"自動補完
-    NeoBundle 'Shougo/vimshell'				"vim上でshell
-    NeoBundle 'Shougo/unite.vim.git'			"インターフェース
-    NeoBundle 'Shougo/unite-outline'			"outline表示できる（超便利
-    NeoBundle 'thinca/vim-singleton'			"既にvimウィンドウを開いているときにタブで開く
-
+    call dein#add( 'Shougo/neobundle.vim')
+    call dein#add( 'Shougo/neocomplete')                "自動補完
+    call dein#add( 'Shougo/vimshell')                   "vim上でshell
+    call dein#add( 'Shougo/unite.vim.git')              "インターフェース
+    call dein#add( 'Shougo/unite-outline')              "outline表示できる（超便利
+    call dein#add( 'thinca/vim-singleton')              "既にvimウィンドウを開いているときにタブで開く
 
     " 画面表示系
-    NeoBundle 'HybridText'						"かっこいいシンタックス
-    NeoBundle 'itchyny/lightline.vim'			"ステータスラインをかっこよくする
-    NeoBundle 'thinca/vim-fontzoom'				"フォント変更
-    NeoBundle 'ujihisa/unite-colorscheme'		"カラースキーム
+    call dein#add( 'HybridText')                        "かっこいいシンタックス
+    call dein#add( 'itchyny/lightline.vim')             "ステータスラインをかっこよくする
+    call dein#add( 'thinca/vim-fontzoom')               "フォント変更
+    call dein#add( 'ujihisa/unite-colorscheme')         "カラースキーム
 
     " コーディング補助系
-    NeoBundle 'houtsnip/vim-emacscommandline'	"コマンドラインでemacsキーバインド
-    NeoBundle 'tpope/vim-surround'				"括弧とかでくくりやすくする
-    NeoBundle 'nathanaelkane/vim-indent-guides'	"インデントに色がついてかっこいい
+    call dein#add( 'houtsnip/vim-emacscommandline')     "コマンドラインでemacsキーバインド
+    call dein#add( 'tpope/vim-surround')                "括弧とかでくくりやすくする
+    call dein#add( 'nathanaelkane/vim-indent-guides')   "インデントに色がついてかっこいい
 
-
-	if has('win32')
-		NeoBundle 'Townk/vim-autoclose'				"括弧とかを閉じる
+    if has('win32')
+        call dein#add( 'Townk/vim-autoclose')           "括弧とかを閉じる
     endif
 
-    NeoBundle 'Shougo/neosnippet'
-    NeoBundle 'Shougo/neosnippet-snippets'
-    NeoBundle 'tpope/vim-endwise'				" beginやdoもendで囲んでくれるよ
-    NeoBundle 'vim-ruby/vim-ruby'
-    NeoBundle 'AndrewRadev/switch.vim'			"true/falseなどをトグル操作
-    NeoBundle 'tomtom/tcomment_vim'
-    NeoBundle 'koron/codic-vim'					" 命名の辞書
-
+    call dein#add( 'Shougo/neosnippet')
+    call dein#add( 'Shougo/neosnippet-snippets')
+    call dein#add( 'tpope/vim-endwise')                 " beginやdoもendで囲んでくれるよ
+    call dein#add( 'vim-ruby/vim-ruby')
+    call dein#add( 'AndrewRadev/switch.vim')            "true/falseなどをトグル操作
+    call dein#add( 'tomtom/tcomment_vim')
+    call dein#add( 'koron/codic-vim')                   " 命名の辞書
 
     " テキスト編集系
-    NeoBundle 'DrawIt'							"図形を描画
-    NeoBundle 'Align'							"テキスト整形
+    call dein#add( 'DrawIt')                            "図形を描画
+    call dein#add( 'Align')                             "テキスト整形
 
     " markdown
-    NeoBundle 'kannokanno/previm'				"markdown over vim
-    NeoBundle 'tyru/open-browser.vim'			"ブラウザを開く
-    NeoBundle 'rhysd/vim-gfm-syntax'			"markdown syntax
+    call dein#add( 'kannokanno/previm')                 "markdown over vim
+    call dein#add( 'tyru/open-browser.vim')             "ブラウザを開く
+    call dein#add( 'rhysd/vim-gfm-syntax')              "markdown syntax
 
+    " Required:
+    call dein#end()
+    call dein#save_state()
+endif
 
-endfunction
+" Required:
+filetype plugin indent on
+syntax enable
 
-" NeoBundle がインストールされているなら LoadBundles() を呼び出す
-" そうでないなら WithoutBundles() を呼び出す
-function! s:InitNeoBundle()
-    if isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
-        filetype plugin indent off
-        if has('vim_starting')
-            set runtimepath+=~/.vim/bundle/neobundle.vim/
-        endif
-        try
-            call neobundle#begin(expand('~/.vim/bundle/'))
-            call s:LoadBundles()
-            call neobundle#end()
-        catch
-            call s:WithoutBundles()
-        endtry 
-    else
-        call s:WithoutBundles()
-    endif
+" If you want to install not installed plugins on startup.
+"if dein#check_install()
+"  call dein#install()
+"endif
 
-    filetype indent plugin on
-    syntax on
-endfunction
-
-call s:InitNeoBundle()
-
-
+"End dein Scripts-------------------------
 "---------------------------------------------------------------------------
 " vim-singleton
 
@@ -190,14 +172,14 @@ set autochdir
 
 " エンコーディング
 if has('win32')
-	set enc=cp932
-	set fenc=cp932
-	set fileformats=dos,unix,mac
-"elseif has('mac')
+    set enc=cp932
+    set fenc=cp932
+    set fileformats=dos,unix,mac
+    "elseif has('mac')
 elseif has('mac')
-	set enc=utf-8
-	set fenc=utf-8
-	set fileformats=mac,unix,dos
+    set enc=utf-8
+    set fenc=utf-8
+    set fileformats=mac,unix,dos
 endif
 
 
@@ -227,7 +209,7 @@ set vb t_vb=
 " 注意！ なので_gvimrcにも書いてあります
 
 "ctrl+a,xを10進数にする
-set nf=""			
+set nf=""            
 
 " 自動改行の回避
 set tw=0
@@ -237,13 +219,13 @@ set incsearch
 
 "---------------------------------------------------------------------------
 " キーマップ
-" モード			再割当有り	再割当無し
-" normal+visual		noremap		map
-" command+insert	noremap!	map!
-" normal			nnoremap	nmap
-" visual			vnoremap	vmap
-" command			cnoremap	cmap
-" insert			inoremap	imap
+" モード            再割当有り    再割当無し
+" normal+visual        noremap        map
+" command+insert    noremap!    map!
+" normal            nnoremap    nmap
+" visual            vnoremap    vmap
+" command            cnoremap    cmap
+" insert            inoremap    imap
 
 " Esc の 2 回押しでハイライトを消去
 nnoremap <Esc><Esc> :nohlsearch<CR><ESC>
@@ -333,7 +315,7 @@ nnoremap <silent> <Space>s :Switch<CR>
 
 
 if !exists('g:tcomment_types')
-	let g:tcomment_types = {}
+    let g:tcomment_types = {}
 endif
 let g:tcomment_types['uwsc'] = '// %s'
 
@@ -342,35 +324,35 @@ let g:tcomment_types['uwsc'] = '// %s'
 
 " 全体整形
 function! s:format_file()
-	let view = winsaveview()
-	normal gg=G
-	silent call winrestview(view)
+    let view = winsaveview()
+    normal gg=G
+    silent call winrestview(view)
 endfunction
 
 
 " 透過度を変える
 function! s:toggle_transparence()
-	if has('gui_macvim')
-		if &transparency ==10
-			set transparency=0
-		else
-			set transparency=10
-		endif
-	else
-		if &transparency ==255 
-			set transparency=200
-		else
-			set transparency=255
-		endif
-	endif
+    if has('gui_macvim')
+        if &transparency ==10
+            set transparency=0
+        else
+            set transparency=10
+        endif
+    else
+        if &transparency ==255 
+            set transparency=200
+        else
+            set transparency=255
+        endif
+    endif
 endfunction
 
 
 " filetype再検知
 function! s:re_detect_filetype()
-	filetype detect
-	if &filetype == "markdown" | setlocal ft=hybrid |setlocal ft=markdown | endif
-	if &filetype == "text" | setlocal ft=hybrid |setlocal ft=markdown | endif
+    filetype detect
+    if &filetype == "markdown" | setlocal ft=hybrid |setlocal ft=markdown | endif
+    if &filetype == "text" | setlocal ft=hybrid |setlocal ft=markdown | endif
 endfunction
 
 "---------------------------------------------------------------------------
@@ -379,84 +361,81 @@ endfunction
 
 " リンク記法を整える
 function! s:markdown_link()
-	:call append(line(".")-1, "[")
-	:call append(line("."), "](")
-	:call append(line(".")+2, ")")
-	:call cursor( line(".")-1 , col(".") )
-	:join5
-	:call cursor( line(".") , col(".") )
+    :call append(line(".")-1, "[")
+    :call append(line("."), "](")
+    :call append(line(".")+2, ")")
+    :call cursor( line(".")-1 , col(".") )
+    :join5
+    :call cursor( line(".") , col(".") )
 endfunction
 
 " 数値付箇条書きを作成
 function! s:markdown_codeblock()
-	:call append(line(".")-1, "```")
-	:call append(line("."), "```")
-	:call cursor( line(".") , col(".") )
+    :call append(line(".")-1, "```")
+    :call append(line("."), "```")
+    :call cursor( line(".") , col(".") )
 endfunction
 
 " 数値付箇条書きを作成
 function! s:put_num_list( max )
-	for i in range(1, a:max)
-		let msg = i . ". "
-		:call append(line(".")-1, msg)
-		unlet i
-		unlet msg
-	endfor
-	:call cursor( line(".")-a:max , col(".") )
+    for i in range(1, a:max)
+        let msg = i . ". "
+        :call append(line(".")-1, msg)
+        unlet i
+        unlet msg
+    endfor
+    :call cursor( line(".")-a:max , col(".") )
 endfunction
 
 
 " 箇条書きを作成
 function! s:put_ast_list( max )
-	for i in range(1, a:max)
-		let msg = "* "
-		:call append(line(".")-1, msg)
-		unlet i
-		unlet msg
-	endfor
-	:call cursor( line(".")-a:max , col(".") )
+    for i in range(1, a:max)
+        let msg = "* "
+        :call append(line(".")-1, msg)
+        unlet i
+        unlet msg
+    endfor
+    :call cursor( line(".")-a:max , col(".") )
 endfunction
 
 
 " markdown形式のファイルを出力する
 function! s:touch_markdown(outputfilepath, flagNewTab)
-	if !filereadable(a:outputfilepath)
-		execute ":redir! >>" . a:outputfilepath
-		silent! echon "\n"
-		silent! echon "====================================\n"
-		silent! echon "\n"
-		silent! echon "------------------------\n"
-		redir END
+    if !filereadable(a:outputfilepath)
+        execute ":redir! >>" . a:outputfilepath
+        silent! echon "\n"
+        silent! echon "====================================\n"
+        silent! echon "\n"
+        silent! echon "------------------------\n"
+        redir END
 
-		if a:flagNewTab
-			echo "Note has created at Desktop! will open with new tab, soon..."
-			execute ":tabnew " . a:outputfilepath
-		else
-			echo "Note has created at Desktop! will open with separated window, soon..."
-			execute ":vs " . a:outputfilepath
-		endif
-		return 1
-	endif
-	return 0
+        if a:flagNewTab
+            echo "Note has created at Desktop! will open with new tab, soon..."
+            execute ":tabnew " . a:outputfilepath
+        else
+            echo "Note has created at Desktop! will open with separated window, soon..."
+            execute ":vs " . a:outputfilepath
+        endif
+        return 1
+    endif
+    return 0
 endfunction
 
 " Desktop にmemoをtouchする
 function! s:touch_with_desktop(flagNewTab)
-	if s:touch_markdown(expand("$HOME/Desktop/" . strftime("%Y%m%d") . '_.txt'), a:flagNewTab)
-		return
-	endif
+    if s:touch_markdown(expand("$HOME/Desktop/" . strftime("%Y%m%d") . '_.txt'), a:flagNewTab)
+        return
+    endif
 
-	for num in range(1,9)
-		if s:touch_markdown(expand("$HOME/Desktop/" . strftime("%Y%m%d") . '_0' . num . '_.txt'), a:flagNewTab)
-			return
-		endif
-	endfor
+    for num in range(1,9)
+        if s:touch_markdown(expand("$HOME/Desktop/" . strftime("%Y%m%d") . '_0' . num . '_.txt'), a:flagNewTab)
+            return
+        endif
+    endfor
 
-	echo "Already exists 10 notes... Please organize your notes."
+    echo "Already exists 10 notes... Please organize your notes."
 endfunction
-
-
-
 
 
 "---------------------------------------------------------------------------
@@ -502,21 +481,21 @@ nnoremap <silent> [unite]s :<C-u>Unite colorscheme -auto-preview<CR>
 "uniteを開いている間のキーマッピング
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()"{{{
-	"ESCでuniteを終了
-	nmap <buffer> <ESC> <Plug>(unite_exit)
-	"入力モードのときjjでノーマルモードに移動
-	imap <buffer> jj <Plug>(unite_insert_leave)
-	"入力モードのときctrl+wでバックスラッシュも削除
-	imap <buffer> <C-w> <Plug>(unite_delete_backward_path)
-	"ctrl+jで縦に分割して開く
-	nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
-	inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
-	"ctrl+jで横に分割して開く
-	nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
-	inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
-	"ctrl+oでその場所に開く
-	nnoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
-	inoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
+    "ESCでuniteを終了
+    nmap <buffer> <ESC> <Plug>(unite_exit)
+    "入力モードのときjjでノーマルモードに移動
+    imap <buffer> jj <Plug>(unite_insert_leave)
+    "入力モードのときctrl+wでバックスラッシュも削除
+    imap <buffer> <C-w> <Plug>(unite_delete_backward_path)
+    "ctrl+jで縦に分割して開く
+    nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+    inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+    "ctrl+jで横に分割して開く
+    nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+    inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+    "ctrl+oでその場所に開く
+    nnoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
+    inoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
 endfunction"}}}
 
 
@@ -535,8 +514,8 @@ let g:neocomplete_lock_buffer_name_pattern = '\*ku\*'
 
 " Define dictionary.
 let g:neocomplete_dictionary_filetype_lists = {
-			\ 'default' : ''
-			\ }
+            \ 'default' : ''
+            \ }
 
 " Plugin key-mappings.
 inoremap <expr> <C-g> neocomplete#undo_completion()
@@ -564,13 +543,13 @@ inoremap <expr> <C-e> neocomplete#cancel_popup()
 "全部入りのbundle。シンタックスハイライトも可能になります。
 au FileType ruby compiler ruby
 augroup rbsyntaxcheck
-	autocmd!
-	autocmd BufWritePost *.rb,*.rake,Rakefile silent make -c % 
+    autocmd!
+    autocmd BufWritePost *.rb,*.rake,Rakefile silent make -c % 
 augroup END
 " 別のとこでいいかも
 augroup quickfixopen
-	autocmd!
-	autocmd QuickfixCmdPost make cw
+    autocmd!
+    autocmd QuickfixCmdPost make cw
 augroup END
 
 
