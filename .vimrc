@@ -70,10 +70,6 @@ function! s:LoadBundles()
     NeoBundle 'rhysd/vim-gfm-syntax'			"markdown syntax
 
 
-    " evernote
-    NeoBundle 'kakkyz81/evervim'
-
-
 endfunction
 
 " NeoBundle がインストールされているなら LoadBundles() を呼び出す
@@ -148,16 +144,6 @@ let g:DrChipTopLvlMenu = ''
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
-
-"---------------------------------------------------------------------------
-" evervim
-
-let g:evervim_devtoken='dummy'
-
-nnoremap <Leader>l :EvervimNotebookList<CR>
-nnoremap <Leader>s :EvervimSearchByQuery<Space>
-nnoremap <Leader>c :EvervimCreateNote<CR>
-nnoremap <Leader>t :EvervimListTags<CR>
 
 
 "---------------------------------------------------------------------------
